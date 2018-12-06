@@ -42,7 +42,8 @@ RUN        apt-get update && \
              python3 \
              python3-keyring \
              python3-dbus \
-             cron && \
+             cron \
+             etherwake && \
            rm -rf /var/lib/apt/lists/* /var/tmp/*
 
 WORKDIR    /root
