@@ -1,0 +1,101 @@
+profile1.name=<PROFILE_NAME>
+profile1.snapshots.automatic_backup_day=1
+# Disable automatic backups
+profile1.snapshots.automatic_backup_mode=0
+profile1.snapshots.automatic_backup_time=0
+profile1.snapshots.automatic_backup_weekday=7
+# Rename existing files before restore into FILE.backup.YYYYMMDD
+profile1.snapshots.backup_on_restore.enabled=true
+# Do not enable bandwith limit for SSH snapshots
+profile1.snapshots.bwlimit.enabled=false
+# in KB/s
+profile1.snapshots.bwlimit.value=3000
+# Perform a dry-run before taking snapshots. Don't take a new snapshot if nothing  has
+# changed. Only valid with profile<N>.snapshots.full_rsync = false
+profile1.snapshots.check_for_changes=true
+profile1.snapshots.continue_on_errors=true
+# When  symlinks  are  encountered, the item that they point  to  (the  reference)  is
+# copied, rather than the symlink
+profile1.snapshots.copy_links=false
+# This  tells  rsync  to  copy  the  referent of symbolic links that point outside the
+# copied tree.  Absolute symlinks are also treated like ordinary files
+profile1.snapshots.copy_unsafe_links=false
+profile1.snapshots.cron.ionice=true
+profile1.snapshots.cron.nice=true
+# Custom hours for cronjob. Only valid for  profile<N>.snapshots.automatic_backup_mode
+profile1.snapshots.custom_backup_time=14
+# Keep snapshots with names during smart_remove
+profile1.snapshots.dont_remove_named_snapshots=true
+# Full rsync mode.  May  be  faster  but  snapshots  are  not  read-only  anymore  and
+# destination  file-system  must  support  all  linux  attributes (date, rights, user,
+# group...)
+profile1.snapshots.full_rsync=false
+# Snapshots are only taken if changes have been detected (default)
+profile1.snapshots.full_rsync.take_snapshot_regardless_of_changes=false
+profile1.snapshots.include.1.type=0
+profile1.snapshots.include.1.value=/home
+profile1.snapshots.include.2.type=0
+profile1.snapshots.include.2.value=/etc
+profile1.snapshots.include.3.type=0
+profile1.snapshots.include.3.value=/root
+profile1.snapshots.include.4.type=0
+profile1.snapshots.include.4.value=/usr
+profile1.snapshots.include.size=4
+profile1.snapshots.local_encfs.path=
+# 1 = Error, 2 = Changes, 3 = Info
+profile1.snapshots.log_level=3
+# Remove  snapshots  until  min_free_space.value  free  space  is reached
+profile1.snapshots.min_free_space.enabled=true
+# 10 = MB, 20 = GB
+profile1.snapshots.min_free_space.unit=20
+profile1.snapshots.min_free_space.value=5
+# Backup over SSH (unencrypted)
+profile1.snapshots.mode=ssh
+profile1.snapshots.no_on_battery=false
+# Display notifications (errors, warnings) through libnotify
+profile1.snapshots.notify.enabled=true
+# Where  to  save  snapshots in mode 'local'. This path must contain a folderstructure
+# like 'backintime/<HOST>/<USER>/<PROFILE_ID>'
+profile1.snapshots.path=
+profile1.snapshots.path.host=<HOST>
+profile1.snapshots.path.profile=1
+profile1.snapshots.path.user=<USER>
+# Preserve ACL. The  source   and   destination   systems  must  have  compatible  ACL
+# entries for this option to work properly
+profile1.snapshots.preserve_acl=false
+# Preserve extended attributes (xattr).
+profile1.snapshots.preserve_xattr=false
+# Remove all snapshots older than value + unit
+profile1.snapshots.remove_old_snapshots.enabled=true
+# 20 = days, 30 = weeks, 80 = years
+profile1.snapshots.remove_old_snapshots.unit=80
+profile1.snapshots.remove_old_snapshots.value=10
+# If smart_remove is enabled, it will cleanup the backups and cronjob is not needed
+profile1.snapshots.smart_remove=true
+# Keep all snapshots for X days
+profile1.snapshots.smart_remove.keep_all=5
+# Keep one snapshot per day for X days
+profile1.snapshots.smart_remove.keep_one_per_day=7
+# Keep one snapshot per month for X month
+profile1.snapshots.smart_remove.keep_one_per_month=24
+# Keep one snapshot per week for X weeks
+profile1.snapshots.smart_remove.keep_one_per_week=8
+# default | aes192-cbc | aes256-cbc | aes128-ctr |
+# aes192-ctr | aes256-ctr | arcfour | arcfour256 | arcfour128 | aes128-cbc |
+# 3des-cbc | blowfish-cbc | cast128-cbc
+profile1.snapshots.ssh.cipher=aes128-ctr
+profile1.snapshots.ssh.host=<SSH_IP>
+profile1.snapshots.ssh.password.save=false
+profile1.snapshots.ssh.password.use_cache=false
+# Snapshot path on remote host. If the path is relative (no leading '/') it will start
+# from remote Users homedir. An empty path will be replaced with './'.''
+profile1.snapshots.ssh.path=
+profile1.snapshots.ssh.port=22
+profile1.snapshots.ssh.private_key_file=/root/.ssh/id_rsa
+profile1.snapshots.ssh.user=<SSH_USER>
+# Use checksum to detect changes rather than size + time
+profile1.snapshots.use_checksum=false
+# Give low priority to backintime so it runs in the background not disturbing things
+profile1.snapshots.user_backup.ionice=false
+# Internal version of profiles config
+profiles.version=1
