@@ -24,9 +24,10 @@ docker pull intelliops/backintime:latest
 ```sh
 docker run -ti --name backintime \
   -v /home/<USER>/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
-  -v /usr:/host/usr:ro \
   -v /home:/host/home:ro \
+  -v /etc:/host/etc:ro \
   -v /root:/host/root:ro \
+  -v /usr:/host/usr:ro \
   --net=host \
   --privileged \
   intelliops/backintime:latest

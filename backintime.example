@@ -33,13 +33,13 @@ profile1.snapshots.full_rsync=false
 # Snapshots are only taken if changes have been detected (default)
 profile1.snapshots.full_rsync.take_snapshot_regardless_of_changes=false
 profile1.snapshots.include.1.type=0
-profile1.snapshots.include.1.value=/home
+profile1.snapshots.include.1.value=/host/home
 profile1.snapshots.include.2.type=0
-profile1.snapshots.include.2.value=/etc
+profile1.snapshots.include.2.value=/host/etc
 profile1.snapshots.include.3.type=0
-profile1.snapshots.include.3.value=/root
+profile1.snapshots.include.3.value=/host/root
 profile1.snapshots.include.4.type=0
-profile1.snapshots.include.4.value=/usr
+profile1.snapshots.include.4.value=/host/usr
 profile1.snapshots.include.size=4
 profile1.snapshots.local_encfs.path=
 # 1 = Error, 2 = Changes, 3 = Info
