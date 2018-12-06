@@ -1,0 +1,9 @@
+sudo: required
+
+language: bash
+
+services:
+  - docker
+
+install:
+  - docker build -t intelliops/backintime:latest -f Dockerfile .
