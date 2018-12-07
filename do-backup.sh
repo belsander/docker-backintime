@@ -2,6 +2,7 @@
 
 IP=$(sed -n 's/^profile[0-9]\+\.snapshots\.ssh\.host=\(.*\)$/\1/p' /etc/backintime/config)
 USER=$(sed -n 's/^profile[0-9]\+\.snapshots\.ssh\.user=\(.*\)$/\1/p' /etc/backintime/config)
+KEY=/root/.ssh/id_rsa
 BACKINTIME_ARGS='--debug'
 
 log() {
@@ -38,6 +39,7 @@ send_wol() {
   ssh_result_code=1
   attempts=1
 
+  # Assuming that the backup target is always powered off
   while [ $ssh_result_code -ne 0 ] && [ $attempts -lt 10 ]
   do
     log "Attempt ${attempts}: sending Wake-On-LAN"
@@ -48,7 +50,7 @@ send_wol() {
 
     log "Attempt ${attempts}: checking if SSH connection can be made"
     ssh_result=$(ssh \
-      -i /root/.ssh/id_rsa \
+      -i $KEY \
       -o "UserKnownHostsFile=/dev/null" \
       -o "StrictHostKeyChecking=no" \
       -o "ServerAliveInterval=60" \
@@ -73,9 +75,15 @@ send_wol() {
     log "Checking configuration of backintime"
     backintime check-config --no-crontab $BACKINTIME_ARGS
 
-    log "Staring actual backup with backintime"
+    log "Starting actual backup with backintime"
     # Run backup (needs to be configured in /etc/backintime/config)
     backintime backup $BACKINTIME_ARGS
+    
+    log "Backup is done, shutting down backup target"
+    # poweroff needs super user permissions, so configure in sudoers
+    ssh $USER@$IP -i $KEY sudo poweroff
+    
+    log "All done, backup target has been shut down"
   else
     log "Failed to SSH login, so assuming Wake-On-LAN failed, cannot backup"
   fi
