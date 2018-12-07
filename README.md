@@ -13,7 +13,9 @@ Latest version of backintime (installed from source).
 
 ## wake-on-lan
 Same as `latest`, but with the additional feature of powering on the backup
-target with WOL and shutting it down again after the backup.
+target with WOL and shutting it down again after the backup. For shutting down 
+the backup target, please have a look at the bottom of this file so see how you 
+have to configure sudoers for the backup target.
 
 # Usage
 
@@ -80,6 +82,15 @@ Only relevant for `wake-on-lan` version of the Docker image.
 ### Custom configuration file
 To run the backup, you will have to mount the backintime configuration file into
 the Docker container. An example can be found back in `backintime.example`.
+
+### Backup target sudoers
+The backup target is shutdown after a successful backup. For performing the `shutdown`
+command, super user permissions are needed. Which means that the following entry has to
+be added in /etc/sudoers to make this work.
+```
+<USER> ALL=NOPASSWD: /sbin/shutdown
+```
+
 
 # Reference
 https://github.com/bit-team/backintime
