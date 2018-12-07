@@ -81,7 +81,7 @@ send_wol() {
     
     log "Backup is done, shutting down backup target"
     # poweroff needs super user permissions, so configure in sudoers
-    ssh $USER@$IP -i $KEY sudo poweroff
+    ssh $USER@$IP -i $KEY sudo /sbin/shutdown -h now
     
     log "All done, backup target has been shut down"
   else
