@@ -58,4 +58,4 @@ RUN        mkdir .ssh && \
 
 COPY       do-backup.sh .
 
-ENTRYPOINT ["sh", "-c", "do-backup.sh"]
+ENTRYPOINT ["sh", "-c", "/root/do-backup.sh"]
